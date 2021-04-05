@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { select, Selection } from 'd3-selection'
 import { axisBottom, axisLeft, max, scaleBand, scaleLinear } from 'd3';
 import styled from 'styled-components'
+import randomstring from 'randomstring'
 
 const initialData = [
   {
@@ -41,32 +42,19 @@ const Test04: React.FC = () => {
   const [data, setData] = useState(initialData)
 
   const maxValue = max(data, d => d.number)
-  const y = scaleLinear()
+  let y = scaleLinear()
       .domain([0, maxValue!])
       .range([dimensions.chartHeight, 0])
 
-  const x = scaleBand()
+  let x = scaleBand()
       .domain(data.map(d => d.name))
       .range([0, dimensions.chartWidth])
       .paddingInner(0.1)
-
-  const yAxis = axisLeft(y)
-          .ticks(3)
-  const xAxis = axisBottom(x)
 
   useEffect(() => {
     if(!selection) {
       setSelection(select(ref.current))
     } else {
-      const xAxisGroup = selection
-        .append('g')
-        .attr('transform', `translate(${dimensions.marginLeft}, ${dimensions.chartHeight + dimensions.marginTop})`)
-        .call(xAxis)
-      const yAxisGroup = selection
-        .append('g')
-        .attr('transform', `translate(${dimensions.marginLeft}, ${dimensions.marginTop})`)
-        .call(yAxis)
-
       selection
         .append('g')
         .attr('transform', `translate(${dimensions.marginLeft}, ${dimensions.marginTop})`)
@@ -75,6 +63,7 @@ const Test04: React.FC = () => {
         .enter()
         .append('rect')
         .attr('width', x.bandwidth)
+        .attr('height', d => dimensions.chartHeight  - y(d.number))
         .attr('x', d => {
           const xValue = x(d.name)
           if (xValue) {
@@ -84,13 +73,81 @@ const Test04: React.FC = () => {
         })
         .attr('y', d => y(d.number))
         .attr('fill', 'orange')
-        .attr('height', d => dimensions.chartHeight  - y(d.number))
+        
     }
-  }, [data, selection, x, xAxis, y, yAxis])
+  }, [data, selection, x, y])
+
+  useEffect(() => {
+    if (selection) {
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      y = scaleLinear()
+        .domain([0, maxValue!])
+        .range([dimensions.chartHeight, 0])
+
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      x = scaleBand()
+        .domain(data.map(d => d.name))
+        .range([0, dimensions.chartWidth])
+        .paddingInner(0.1)
+
+      const rects = selection.selectAll('rect').data(data)
+
+      rects
+        .exit()
+        .remove()
+      
+      rects
+        .attr('width', x.bandwidth)
+        .attr('height', d => dimensions.chartHeight  - y(d.number))
+        .attr('x', d => {
+          const xValue = x(d.name)
+          if (xValue) {
+            return xValue
+          }
+          return null
+        })
+        .attr('y', d => y(d.number))
+        .attr('fill', 'orange')
+
+      rects
+        .enter()
+        .append('rect')
+        .attr('width', x.bandwidth)
+        .attr('height', d => dimensions.chartHeight  - y(d.number))
+        .attr('x', d => {
+          const xValue = x(d.name)
+          if (xValue) {
+            return xValue
+          }
+          return null
+        })
+        .attr('y', d => y(d.number))
+        .attr('fill', 'orange')
+    }
+  }, [data])
+
+  const addRandom = () => {
+    const dataToBeAdded = {
+      name: randomstring.generate(10),
+      number: Math.floor(Math.random()*(8000) + 1000)
+    }
+    console.log(dataToBeAdded.number)
+    setData([...data, dataToBeAdded])
+  }
+
+  const removeLast = () => {
+    if (data.length === 0) {
+      return
+    }
+    const slicedData = data.slice(0, data.length -1)
+    setData(slicedData)
+  }
 
   return (
     <StyledBase>
       <svg ref={ref} width={dimensions.width} height={dimensions.height} />
+      <button onClick={addRandom}>Add Random</button>
+      <button onClick={removeLast}>Remove Last</button>
     </StyledBase>
   );
 };

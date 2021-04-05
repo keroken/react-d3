@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { select, Selection } from 'd3-selection'
-import { axisBottom, axisLeft, max, scaleBand, scaleLinear } from 'd3';
+import { max, scaleBand, scaleLinear } from 'd3';
 import styled from 'styled-components'
 import randomstring from 'randomstring'
 

@@ -4,6 +4,7 @@ import Test01 from './Test01'
 import Test02 from './Test02'
 import Test03 from './Test03'
 import Test04 from './Test04'
+import Test05 from './Test05'
 
 const App = () => {
   return (
@@ -26,6 +27,9 @@ const App = () => {
             <li>
               <Link to="/test04">Test04</Link>
             </li>
+            <li>
+              <Link to="/test05">Test05</Link>
+            </li>
           </ul>
         </nav>
         <Switch>
@@ -40,6 +44,9 @@ const App = () => {
           </Route>
           <Route path="/test04">
             <Test04 />
+          </Route>
+          <Route path="/test05">
+            <Test05 />
           </Route>
         </Switch>
       </div>

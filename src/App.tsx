@@ -5,6 +5,7 @@ import Test02 from './Test02'
 import Test03 from './Test03'
 import Test04 from './Test04'
 import Test05 from './Test05'
+import RadarChart from './RadarChart'
 
 const App = () => {
   return (
@@ -30,6 +31,9 @@ const App = () => {
             <li>
               <Link to="/test05">Test05</Link>
             </li>
+            <li>
+              <Link to="/radarchart">radarchart</Link>
+            </li>
           </ul>
         </nav>
         <Switch>
@@ -47,6 +51,9 @@ const App = () => {
           </Route>
           <Route path="/test05">
             <Test05 />
+          </Route>
+          <Route path="/radarchart">
+            <RadarChart />
           </Route>
         </Switch>
       </div>

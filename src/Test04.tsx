@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { select, Selection } from 'd3-selection'
-import { max, scaleBand, scaleLinear } from 'd3';
+import { axisBottom, axisLeft, max, scaleBand, scaleLinear } from 'd3';
 import styled from 'styled-components'
 import randomstring from 'randomstring'
 
@@ -51,10 +51,23 @@ const Test04: React.FC = () => {
       .range([0, dimensions.chartWidth])
       .paddingInner(0.1)
 
+  const yAxis = axisLeft(y)
+      .ticks(3)
+  const xAxis = axisBottom(x)
+
   useEffect(() => {
     if(!selection) {
       setSelection(select(ref.current))
     } else {
+      const xAxisGroup = selection
+        .append('g')
+        .attr('transform', `translate(${dimensions.marginLeft}, ${dimensions.chartHeight + dimensions.marginTop})`)
+        .call(xAxis)
+      const yAxisGroup = selection
+        .append('g')
+        .attr('transform', `translate(${dimensions.marginLeft}, ${dimensions.marginTop})`)
+        .call(yAxis)
+        
       selection
         .append('g')
         .attr('transform', `translate(${dimensions.marginLeft}, ${dimensions.marginTop})`)

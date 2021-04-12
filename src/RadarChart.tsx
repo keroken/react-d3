@@ -6,12 +6,18 @@ import { select, Selection } from 'd3-selection'
 const RadarChart: React.FC = () => {
   const ref = useRef<SVGSVGElement | null>(null)
   const [selection, setSelection] = useState<null | Selection<SVGSVGElement | null, unknown, null, undefined>>(null)
+  
 
   useEffect(() => {
     if(!selection) {
       setSelection(select(ref.current))
     } else {
+      //let features = ['熱量', '外向性', '身だしなみ', '独自性', '動画品質', '新指標'];
       let features = ['熱量', '外向性', '身だしなみ', '独自性', '動画品質'];
+      //let features = ['熱量', '外向性', '身だしなみ', '独自性'];
+      //let features = ['熱量', '外向性', '身だしなみ'];
+      //let features = ['熱量', '外向性'];
+      //let features = ['熱量'];
       let data: {[index: string]: number} = {}
       features.forEach(f => data[f] = 1 + Math.floor(Math.random() * 5));
       
@@ -43,7 +49,7 @@ const RadarChart: React.FC = () => {
           .attr('y1', 120)
           .attr('x2', line_coordinate.x)
           .attr('y2', line_coordinate.y)
-          .attr('stroke', 'black')
+          .attr('stroke', 'gray')
 
         selection.append("text")
           .attr('x', label_coordinate.x)
@@ -74,6 +80,10 @@ const RadarChart: React.FC = () => {
       }
       path.closePath();
       console.log(points);
+
+      selection
+        .exit()
+        .remove()
 
       selection.append('path')
         .attr('d', path.toString())

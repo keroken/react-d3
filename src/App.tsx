@@ -7,6 +7,7 @@ import Test04 from './Test04'
 import Test05 from './Test05'
 import RadarChart from './RadarChart'
 import RadarChartFlex from './RadarChartFlex'
+import Bargraph01 from './BarGraph01'
 
 const App = () => {
   return (
@@ -38,6 +39,9 @@ const App = () => {
             <li>
               <Link to="/radarchartflex">radarchartflex</Link>
             </li>
+            <li>
+              <Link to="/bar-graph-01">bar-graph-01</Link>
+            </li>
           </ul>
         </nav>
         <Switch>
@@ -61,6 +65,9 @@ const App = () => {
           </Route>
           <Route path="/radarchartflex">
             <RadarChartFlex />
+          </Route>
+          <Route path="/bar-graph-01">
+            <Bargraph01 />
           </Route>
         </Switch>
       </div>

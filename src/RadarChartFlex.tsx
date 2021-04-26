@@ -1,5 +1,4 @@
 import React from 'react';
-import * as d3 from 'd3'
 import styled from 'styled-components'
 
 const svgDimension = {
@@ -9,9 +8,10 @@ const svgDimension = {
 const features = ['熱量', '外向性', '身だしなみ', '独自性', '動画品質', '新指標'];
 const  data: {[index: string]: number} = {}
 features.forEach(f => data[f] = 1 + Math.floor(Math.random() * 5));
-const radialScale = d3.scaleLinear()
-  .domain([0,5])
-  .range([0,60])
+const radialScale = (input: number) => {
+  const output = input / 5 * 60
+  return output
+}
 
 const angleToCoordinate = (angle: number, value: number) => {
   const x = Math.cos(angle) * radialScale(value);
@@ -58,36 +58,21 @@ const RadarChartFlex: React.FC = () => {
     }
     return coordinates;
   }
-
   const coordinates = getPathCoordinates(data);
-  const points: [number, number][] = coordinates.map((point) => [point.x, point.y]);
-
-  const path = d3.path()
-  path.moveTo(points[0][0], points[0][1]);
-  for (let j = 1; j < features.length; j++) {
-    path.lineTo(points[j][0], points[j][1]);
-  }
-  path.closePath();
 
   return (
     <div>
       <svg width={svgDimension.width} height={svgDimension.height}>
         <Base />
-        <path d={path.toString()}
+          <polygon
+            points={coordinates.map((coordinate) => `${coordinate.x}, ${coordinate.y}`).join(' ')}
             stroke="#17D4E5"
             strokeWidth="2"
             fill="rgba(23, 212, 229, 0.5)"
             opacity={0.5}
           />
-          {/* <polygon d={path.toString()}
-            points={points.map((point) => `${point[0]}, ${point[1]} `)}
-            stroke="#17D4E5"
-            strokeWidth="2"
-            fill="rgba(23, 212, 229, 0.5)"
-            opacity={0.5}
-          /> */}
-          {points.map((point) => (
-            <circle cx={point[0]} cy={point[1]} r={4} fill="#17D4E5" />
+          {coordinates.map((coordinate) => (
+            <circle cx={coordinate.x} cy={coordinate.y} r={4} fill="#17D4E5" />
           ))}
       </svg>
     </div>

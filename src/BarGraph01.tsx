@@ -25,7 +25,7 @@ const memberColor = (memberId: number) => {
 
 const dimensions = {
   width: 800,
-  height: 235,
+  height: 300,
   chartWidth: 700,
   chartHeight: 160,
   marginTop: 50,
@@ -76,17 +76,18 @@ const Bargraph01: React.FC = () => {
 
             {sessionData.map((data, i) => (
               <>
-                <rect width="6" height={graphRatio * data.memberSpeech} x={barCoordinates[i].x} y={barCoordinates[i].y} rx="3" fill={memberColor(data.memberId)} />
-                <rect width="6" height={graphRatio * data.mentorSpeech} x={barCoordinates[i].x + 10} y={160 - (graphRatio * data.mentorSpeech)} rx="3" fill ="#CACCCD" />
+                <rect width={6} height={graphRatio * data.memberSpeech} x={barCoordinates[i].x} y={barCoordinates[i].y} rx={3} fill={memberColor(data.memberId)} />
+                <rect width={6} height={graphRatio * data.mentorSpeech} x={barCoordinates[i].x + 10} y={160 - (graphRatio * data.mentorSpeech)} rx={3} fill ="#CACCCD" />
                 <g transform={`translate(${barCoordinates[i].x - 4}, ${dimensions.chartHeight + 6})`}>
-                  <circle cx="12" cy="12" r="12" fill={memberColor(data.memberId)} />
-                  <text x="2" y="16" fontSize={10} fill="#FFFFFF">{data.iconName}</text>
+                  <circle cx={12} cy={12} r={12} fill={memberColor(data.memberId)} />
+                  <text x={2} y={16} fontSize={10} fill="#FFFFFF">{data.iconName}</text>
                 </g>
-                <text x={barCoordinates[i].x} y={dimensions.chartHeight + 30} dx="-4" dy="20" fontSize={12} fill="#7C868A">{format(new Date(data.date), "d'日'")}</text>
+                <text x={barCoordinates[i].x} y={dimensions.chartHeight + 30} dx={-4} dy={20} fontSize={12} fill="#7C868A">{format(new Date(data.date), "d'日'")}</text>
+                <text x={barCoordinates[i].x} y={dimensions.chartHeight + 30} dx={-4} dy={40} fontSize={12} fill="#7C868A">{format(new Date(data.date), "M'月'")}</text>
               </>
             ))}
             <polyline points={linePoints} stroke="#7C868A" fill="none" />
-            <circle cx={endPoint.x} cy={endPoint.y} r={12} fill="#A4A5A6" fillOpacity="0.2" />
+            <circle cx={endPoint.x} cy={endPoint.y} r={12} fill="#A4A5A6" fillOpacity={0.2} />
             <circle cx={endPoint.x} cy={endPoint.y} r={4} fill="#7C868A" />
           </g>
         </svg>

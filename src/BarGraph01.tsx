@@ -82,8 +82,8 @@ const Bargraph01: React.FC = () => {
                   <circle cx={12} cy={12} r={12} fill={memberColor(data.memberId)} />
                   <text x={2} y={16} fontSize={10} fill="#FFFFFF">{data.iconName}</text>
                 </g>
-                <text x={barCoordinates[i].x} y={dimensions.chartHeight + 30} dx={-4} dy={20} fontSize={12} fill="#7C868A">{format(new Date(data.date), "d'日'")}</text>
-                <text x={barCoordinates[i].x} y={dimensions.chartHeight + 30} dx={-4} dy={40} fontSize={12} fill="#7C868A">{format(new Date(data.date), "M'月'")}</text>
+                <text textAnchor="end" x={barCoordinates[i].x} y={dimensions.chartHeight + 30} dx={20} dy={20} fontSize={12} fill="#7C868A">{format(new Date(data.date), "d'日'")}</text>
+                <text textAnchor="end" x={barCoordinates[i].x} y={dimensions.chartHeight + 30} dx={20} dy={40} fontSize={12} fill="#7C868A">{format(new Date(data.date), "M'月'")}</text>
               </>
             ))}
             <polyline points={linePoints} stroke="#7C868A" fill="none" />

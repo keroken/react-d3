@@ -1,54 +1,95 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { axisBottom, axisLeft, max, scaleBand, scaleLinear } from 'd3';
+import React from 'react';
+import { format } from 'date-fns';
 import styled from 'styled-components'
 
+const sessionData = [
+  { sessionId: 1003, memberId: 1, name: '岩谷真里奈', iconName: '岩谷', date: '2021-03-30', memberSpeech: 5.0, mentorSpeech: 11.0, sessionDuration: 13.0 },
+  { sessionId: 1021, memberId: 2, name: '大月加奈', iconName: '大月', date: '2021-04-06', memberSpeech: 7.0, mentorSpeech: 15.0, sessionDuration: 22.0 },
+  { sessionId: 1034, memberId: 3, name: '下田裕美', iconName: '下田', date: '2021-04-13', memberSpeech: 12.0, mentorSpeech: 16.0, sessionDuration: 23.0 },
+  { sessionId: 1039, memberId: 1, name: '岩谷真里奈', iconName: '岩谷', date: '2021-04-20', memberSpeech: 18.0, mentorSpeech: 16.0, sessionDuration: 30.0 },
+  { sessionId: 1042, memberId: 3, name: '下田裕美', iconName: '下田', date: '2021-04-27', memberSpeech: 18.0, mentorSpeech: 11.0, sessionDuration: 24.0 },
+];
+
+const memberColors = ['#76D4F4', '#8AE58B', '#F9B12B'];
+
+const memberColor = (memberId: number) => {
+  switch (memberId % 3) {
+    case 1:
+      return memberColors[0];
+    case 2:
+      return memberColors[1];
+    default:
+      return memberColors[2];
+  }
+};
+
 const dimensions = {
-  width: 678,
+  width: 800,
   height: 235,
   chartWidth: 700,
-  chartHeight: 400,
+  chartHeight: 160,
   marginTop: 50,
   marginLeft: 100
 }
 
-const Bargraph01: React.FC = () => {
-  const ref = useRef<SVGSVGElement | null>(null)
+const ratio = (domain: number, range: number) => {
+  return (range / domain);
+};
 
+const Bargraph01: React.FC = () => {
   const horizontalLines = [];
   for (let i = 0; i < 5; i++) {
     horizontalLines.push(
       <>
-        <line x1="0" y1={i * 40 + 20} x2="630" y2={i * 40 + 20} stroke="#E9EAEB" />
-        <text x="640" dy="5" y={i * 40 + 20} fontSize={12} fill="#7C868A">{`${4 - i}0分`}</text>
+        <line x1="0" y1={i * 40} x2={dimensions.chartWidth} y2={i * 40} stroke="#E9EAEB" />
+        <text x={dimensions.chartWidth + 10} dy="5" y={i * 40} fontSize={12} fill="#7C868A">{`${4 - i}0分`}</text>
       </>
     );
   }
 
+  const graphRatio = ratio(40, dimensions.chartHeight);
+
+  type coordinatesType = {
+    x: number;
+    y: number;
+  };
+
+  const barCoordinates: coordinatesType[] = [];
+  let linePoints: string = '';
+
+  sessionData.forEach((data, i) => {
+    const posX = dimensions.chartWidth/ (sessionData.length + 1) * (i + 1);
+    const posY = dimensions.chartHeight  - (graphRatio * data.memberSpeech);
+    const pointY = dimensions.chartHeight - (graphRatio * data.sessionDuration);
+    barCoordinates.push({x: posX, y: posY});
+    linePoints = linePoints + (posX + 8).toString() + ',' + pointY.toString() + ' ';
+  });
+
+  let endPoint: coordinatesType = { x: dimensions.chartWidth / (sessionData.length + 1) * (sessionData.length) + 8, y: 160 - graphRatio * sessionData[sessionData.length - 1].sessionDuration};
+
   return (
     <>
       <StyledBase>
-        <svg ref={ref} width={dimensions.width} height={dimensions.height}>
-          <rect width="6" height="30" x="60" y="150" rx="3" fill="#76D4F4" />
-          <rect width="6" height="50" x="72" y="130" rx="3" fill="#CACCCD" />
-          <rect width="6" height="50" x="180" y="130" rx="3" fill="#8AE58B" />
-          <rect width="6" height="70" x="192" y="110" rx="3" fill="#CACCCD" />
-          <rect width="6" height="60" x="300" y="120" rx="3" fill="#F9B12B" />
-          <rect width="6" height="70" x="312" y="110" rx="3" fill="#CACCCD" />
-          <rect width="6" height="80" x="420" y="100" rx="3" fill="#76D4F4" />
-          <rect width="6" height="60" x="432" y="120" rx="3" fill="#CACCCD" />
-          <rect width="6" height="70" x="540" y="110" rx="3" fill="#F9B12B" />
-          <rect width="6" height="50" x="552" y="130" rx="3" fill="#CACCCD" />
-          <circle cx="68" cy="200" r="12" fill="#76D4F4"></circle>
-          <text x="60" y="210" dy="20" fontSize={12} fill="#7C868A">30日</text>
-          <text x="180" y="210" dy="20" fontSize={12} fill="#7C868A">6日</text>
-          <text x="300" y="210" dy="20" fontSize={12} fill="#7C868A">13日</text>
-          <text x="420" y="210" dy="20" fontSize={12} fill="#7C868A">20日</text>
-          <text x="540" y="210" dy="20" fontSize={12} fill="#7C868A">27日</text>
-          {horizontalLines}
+        <svg width={dimensions.width} height={dimensions.height}>
+          <g transform="translate(0, 20)">
+            {horizontalLines}
+
+            {sessionData.map((data, i) => (
+              <>
+                <rect width="6" height={graphRatio * data.memberSpeech} x={barCoordinates[i].x} y={barCoordinates[i].y} rx="3" fill={memberColor(data.memberId)} />
+                <rect width="6" height={graphRatio * data.mentorSpeech} x={barCoordinates[i].x + 10} y={160 - (graphRatio * data.mentorSpeech)} rx="3" fill ="#CACCCD" />
+                <g transform={`translate(${barCoordinates[i].x - 4}, ${dimensions.chartHeight + 6})`}>
+                  <circle cx="12" cy="12" r="12" fill={memberColor(data.memberId)} />
+                  <text x="2" y="16" fontSize={10} fill="#FFFFFF">{data.iconName}</text>
+                </g>
+                <text x={barCoordinates[i].x} y={dimensions.chartHeight + 30} dx="-4" dy="20" fontSize={12} fill="#7C868A">{format(new Date(data.date), "d'日'")}</text>
+              </>
+            ))}
+            <polyline points={linePoints} stroke="#7C868A" fill="none" />
+            <circle cx={endPoint.x} cy={endPoint.y} r={12} fill="#A4A5A6" fillOpacity="0.2" />
+            <circle cx={endPoint.x} cy={endPoint.y} r={4} fill="#7C868A" />
+          </g>
         </svg>
-        <StyledIcon>
-          岩谷
-        </StyledIcon>
       </StyledBase>
     </>
   );
@@ -63,16 +104,5 @@ const StyledBase = styled.div`
   border-radius: 8px;
   border: 1px solid #CACCCD;
 `
-
-const StyledIcon = styled.div`
-  width: 24px;
-  height: 24px;
-  background: #76D4F4;
-  border-radius: 999px;
-  color: white;
-  font-size: 10px;
-  text-align: center;
-  line-height: 24px;
-`;
 
 export default Bargraph01;

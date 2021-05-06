@@ -65,7 +65,7 @@ const Bargraph01: React.FC = () => {
     linePoints = linePoints + (posX + 8).toString() + ',' + pointY.toString() + ' ';
   });
 
-  let endPoint: coordinatesType = { x: dimensions.chartWidth / (sessionData.length + 1) * (sessionData.length) + 8, y: 160 - graphRatio * sessionData[sessionData.length - 1].sessionDuration};
+  const endPoint: coordinatesType = { x: dimensions.chartWidth / (sessionData.length + 1) * (sessionData.length) + 8, y: 160 - graphRatio * sessionData[sessionData.length - 1].sessionDuration};
 
   return (
     <>

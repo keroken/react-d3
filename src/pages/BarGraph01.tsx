@@ -1,5 +1,5 @@
 import React from 'react';
-import { format } from 'date-fns';
+import BarGraph from './BarGraph'
 import styled from 'styled-components'
 
 const sessionData = [
@@ -32,6 +32,11 @@ const dimensions = {
   marginLeft: 100
 }
 
+type coordinatesType = {
+  x: number;
+  y: number;
+};
+
 const ratio = (domain: number, range: number) => {
   return (range / domain);
 };
@@ -48,11 +53,6 @@ const Bargraph01: React.FC = () => {
   }
 
   const graphRatio = ratio(40, dimensions.chartHeight);
-
-  type coordinatesType = {
-    x: number;
-    y: number;
-  };
 
   const barCoordinates: coordinatesType[] = [];
   let linePoints: string = '';
@@ -75,16 +75,7 @@ const Bargraph01: React.FC = () => {
             {horizontalLines}
 
             {sessionData.map((data, i) => (
-              <>
-                <rect width={6} height={graphRatio * data.memberSpeech} x={barCoordinates[i].x} y={barCoordinates[i].y} rx={3} fill={memberColor(data.memberId)} />
-                <rect width={6} height={graphRatio * data.mentorSpeech} x={barCoordinates[i].x + 10} y={160 - (graphRatio * data.mentorSpeech)} rx={3} fill ="#CACCCD" />
-                <g transform={`translate(${barCoordinates[i].x - 4}, ${dimensions.chartHeight + 6})`}>
-                  <circle cx={12} cy={12} r={12} fill={memberColor(data.memberId)} />
-                  <text x={2} y={16} fontSize={10} fill="#FFFFFF">{data.iconName}</text>
-                </g>
-                <text textAnchor="end" x={barCoordinates[i].x} y={dimensions.chartHeight + 30} dx={20} dy={20} fontSize={12} fill="#7C868A">{format(new Date(data.date), "d'日'")}</text>
-                <text textAnchor="end" x={barCoordinates[i].x} y={dimensions.chartHeight + 30} dx={20} dy={40} fontSize={12} fill="#7C868A">{format(new Date(data.date), "M'月'")}</text>
-              </>
+              <BarGraph data={data} ratio={graphRatio} coordinate={barCoordinates[i]} color={memberColor(data.memberId)} chartHeight={dimensions.chartHeight} /> 
             ))}
             <polyline points={linePoints} stroke="#7C868A" fill="none" />
             <circle cx={endPoint.x} cy={endPoint.y} r={12} fill="#A4A5A6" fillOpacity={0.2} />

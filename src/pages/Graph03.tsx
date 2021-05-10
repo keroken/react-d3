@@ -1,5 +1,4 @@
 import React from 'react';
-import BarGraph from './BarGraph';
 import LineShadeGraph from './LineShadeGraph';
 import HorizontalLabels from './HorizontalLabels';
 import styled from 'styled-components';
@@ -58,6 +57,7 @@ const Graph03: React.FC = () => {
 
   const barCoordinates: coordinatesType[] = [];
   let linePoints: string = '';
+  let pointData: coordinatesType[] = [];
 
   sessionData.forEach((data, i) => {
     const posX = dimensions.chartWidth/ (sessionData.length + 1) * (i + 1);
@@ -65,9 +65,8 @@ const Graph03: React.FC = () => {
     const pointY = dimensions.chartHeight - (graphRatio * data.sessionDuration);
     barCoordinates.push({x: posX, y: posY});
     linePoints = linePoints + (posX + 8).toString() + ',' + pointY.toString() + ' ';
+    pointData.push({x: posX, y: pointY});
   });
-
-  const endPoint: coordinatesType = { x: dimensions.chartWidth / (sessionData.length + 1) * (sessionData.length) + 8, y: 160 - graphRatio * sessionData[sessionData.length - 1].sessionDuration};
 
   return (
     <>
@@ -77,7 +76,6 @@ const Graph03: React.FC = () => {
             {horizontalLines}
             {sessionData.map((data, i) => (
               <>
-                <BarGraph data={data} ratio={graphRatio} coordinate={barCoordinates[i]} color={memberColor(data.memberId)} chartHeight={dimensions.chartHeight} />
                 <HorizontalLabels
                   data={data}
                   coordinate={barCoordinates[i]}
@@ -86,7 +84,7 @@ const Graph03: React.FC = () => {
                 />
               </>
             ))}
-            <LineShadeGraph linePoints={linePoints} endPoint={endPoint} color={memberColor(sessionData[0].memberId)} />
+            <LineShadeGraph pointData={pointData} color={memberColor(sessionData[0].memberId)} chartHeight={dimensions.chartHeight} />
           </g>
         </svg>
       </StyledBase>

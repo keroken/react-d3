@@ -5,18 +5,30 @@ type coordinatesType = {
   y: number;
 };
 
-type LineGraphProps = {
-  linePoints: string;
-  endPoint: coordinatesType;
+type LineShadeGraphProps = {
+  pointData: coordinatesType[];
   color?: string;
+  chartHeight: number;
 };
 
-const LineShadeGraph = ({linePoints, endPoint, color = '#7C868A'}: LineGraphProps) => {
+const LineShadeGraph = ({pointData, color = '#7C868A', chartHeight}: LineShadeGraphProps) => {
+  let areaPoints = `${pointData[0].x + 8},${chartHeight} `;
+  let linePoints = '';
+  pointData.forEach((data, i) => {
+    linePoints = linePoints + (pointData[i].x + 8).toString() + ',' + pointData[i].y.toString() + ' ';
+    areaPoints = areaPoints + (pointData[i].x + 8).toString() + ',' + pointData[i].y.toString() + ' ';
+  });
+  areaPoints = areaPoints.concat(`${pointData[pointData.length - 1].x + 8},${chartHeight} `);
   return  (
     <>
+      <defs>
+        <linearGradient id="myGradient" gradientTransform="rotate(90)">
+          <stop offset="40%"  stop-color={color} />
+          <stop offset="100%" stop-color="white" stopOpacity={0} />
+        </linearGradient>
+      </defs>
+      <polyline points={areaPoints} stroke="none" fill="url('#myGradient')" />
       <polyline points={linePoints} stroke={color} fill="none" />
-      <circle cx={endPoint.x} cy={endPoint.y} r={12} fill={color} fillOpacity={color === '#7C868A' ? 0.2 : 0.4} />
-      <circle cx={endPoint.x} cy={endPoint.y} r={4} fill={color} />
     </>
   );
 };

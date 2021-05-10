@@ -9,6 +9,7 @@ import RadarChart from './pages/RadarChart';
 import RadarChartFlex from './pages/RadarChartFlex';
 import Graph01 from './pages/Graph01';
 import Graph02 from './pages/Graph02';
+import Graph03 from './pages/Graph03';
 
 const App = () => {
   return (
@@ -46,6 +47,9 @@ const App = () => {
             <li>
               <Link to="/graph-02">graph-02</Link>
             </li>
+            <li>
+              <Link to="/graph-03">graph-03</Link>
+            </li>
           </ul>
         </nav>
         <Switch>
@@ -75,6 +79,9 @@ const App = () => {
           </Route>
           <Route path="/graph-02">
             <Graph02 />
+          </Route>
+          <Route path="/graph-03">
+            <Graph03 />
           </Route>
         </Switch>
       </div>

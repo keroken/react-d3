@@ -75,7 +75,6 @@ const Graph01: React.FC = () => {
         <svg width={dimensions.width} height={dimensions.height}>
           <g transform="translate(0, 20)">
             {horizontalLines}
-
             {sessionData.map((data, i) => (
               <>
                 <BarGraph

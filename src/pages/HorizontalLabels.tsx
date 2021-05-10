@@ -5,7 +5,7 @@ import { sessionDataType, coordinatesType } from './BarGraph';
 type xLabelsProps = {
   data: sessionDataType;
   coordinate: coordinatesType;
-  withIcon: boolean;
+  withIcon?: boolean;
   chartHeight: number;
   color?: string;
 };

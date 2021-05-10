@@ -1,6 +1,7 @@
 import React from 'react';
 import BarGraph from './BarGraph';
 import LineGraph from './LineGraph';
+import HorizontalLabels from './HorizontalLabels';
 import styled from 'styled-components';
 
 const sessionData = [
@@ -74,9 +75,16 @@ const Graph02: React.FC = () => {
         <svg width={dimensions.width} height={dimensions.height}>
           <g transform="translate(0, 20)">
             {horizontalLines}
-
             {sessionData.map((data, i) => (
-              <BarGraph data={data} ratio={graphRatio} coordinate={barCoordinates[i]} color={memberColor(data.memberId)} chartHeight={dimensions.chartHeight} /> 
+              <>
+                <BarGraph data={data} ratio={graphRatio} coordinate={barCoordinates[i]} color={memberColor(data.memberId)} chartHeight={dimensions.chartHeight} /> 
+                <HorizontalLabels
+                  data={data}
+                  coordinate={barCoordinates[i]}
+                  chartHeight={dimensions.chartHeight}
+                  color={memberColor(data.memberId)}
+                />
+              </>
             ))}
             <LineGraph linePoints={linePoints} endPoint={endPoint} color={memberColor(sessionData[0].memberId)} />
           </g>

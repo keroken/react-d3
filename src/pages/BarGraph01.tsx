@@ -1,6 +1,7 @@
 import React from 'react';
-import BarGraph from './BarGraph'
-import styled from 'styled-components'
+import BarGraph from './BarGraph';
+import LineGraph from './LineGraph';
+import styled from 'styled-components';
 
 const sessionData = [
   { sessionId: 1003, memberId: 1, name: '岩谷真里奈', iconName: '岩谷', date: '2021-03-30', memberSpeech: 5.0, mentorSpeech: 11.0, sessionDuration: 13.0 },
@@ -77,9 +78,7 @@ const Bargraph01: React.FC = () => {
             {sessionData.map((data, i) => (
               <BarGraph data={data} ratio={graphRatio} coordinate={barCoordinates[i]} color={memberColor(data.memberId)} chartHeight={dimensions.chartHeight} /> 
             ))}
-            <polyline points={linePoints} stroke="#7C868A" fill="none" />
-            <circle cx={endPoint.x} cy={endPoint.y} r={12} fill="#A4A5A6" fillOpacity={0.2} />
-            <circle cx={endPoint.x} cy={endPoint.y} r={4} fill="#7C868A" />
+            <LineGraph linePoints={linePoints} endPoint={endPoint} />
           </g>
         </svg>
       </StyledBase>

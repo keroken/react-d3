@@ -1,13 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
-import Test01 from './Test01'
-import Test02 from './Test02'
-import Test03 from './Test03'
-import Test04 from './Test04'
-import Test05 from './Test05'
-import RadarChart from './RadarChart'
-import RadarChartFlex from './RadarChartFlex'
-import Bargraph01 from './BarGraph01'
+import Test01 from './pages/Test01'
+import Test02 from './pages/Test02'
+import Test03 from './pages/Test03'
+import Test04 from './pages/Test04'
+import Test05 from './pages/Test05'
+import RadarChart from './pages/RadarChart'
+import RadarChartFlex from './pages/RadarChartFlex'
+import Bargraph01 from './pages/BarGraph01'
 
 const App = () => {
   return (

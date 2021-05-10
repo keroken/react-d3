@@ -76,7 +76,7 @@ const Graph02: React.FC = () => {
           <g transform="translate(0, 20)">
             {horizontalLines}
             {sessionData.map((data, i) => (
-              <>
+              <g key={data.sessionId}>
                 <BarGraph data={data} ratio={graphRatio} coordinate={barCoordinates[i]} color={memberColor(data.memberId)} chartHeight={dimensions.chartHeight} /> 
                 <HorizontalLabels
                   data={data}
@@ -84,7 +84,7 @@ const Graph02: React.FC = () => {
                   chartHeight={dimensions.chartHeight}
                   color={memberColor(data.memberId)}
                 />
-              </>
+              </g>
             ))}
             <LineGraph linePoints={linePoints} endPoint={endPoint} color={memberColor(sessionData[0].memberId)} />
           </g>

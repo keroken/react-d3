@@ -23,8 +23,8 @@ const LineShadeGraph = ({pointData, color = '#7C868A', chartHeight}: LineShadeGr
     <>
       <defs>
         <linearGradient id="myGradient" gradientTransform="rotate(90)">
-          <stop offset="40%"  stop-color={color} />
-          <stop offset="100%" stop-color="white" stopOpacity={0} />
+          <stop offset="40%"  stopColor={color} />
+          <stop offset="100%" stopColor="white" stopOpacity={0} />
         </linearGradient>
       </defs>
       <polyline points={areaPoints} stroke="none" fill="url('#myGradient')" />

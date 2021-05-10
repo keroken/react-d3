@@ -75,14 +75,14 @@ const Graph03: React.FC = () => {
           <g transform="translate(0, 20)">
             {horizontalLines}
             {sessionData.map((data, i) => (
-              <>
+              <g key={data.sessionId}>
                 <HorizontalLabels
                   data={data}
                   coordinate={barCoordinates[i]}
                   chartHeight={dimensions.chartHeight}
                   color={memberColor(data.memberId)}
                 />
-              </>
+              </g>
             ))}
             <LineShadeGraph pointData={pointData} color={memberColor(sessionData[0].memberId)} chartHeight={dimensions.chartHeight} />
           </g>

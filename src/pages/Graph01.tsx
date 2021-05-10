@@ -47,10 +47,10 @@ const Graph01: React.FC = () => {
   const horizontalLines = [];
   for (let i = 0; i < 5; i++) {
     horizontalLines.push(
-      <>
+      <g key={i}>
         <line x1="0" y1={i * 40} x2={dimensions.chartWidth} y2={i * 40} stroke="#E9EAEB" />
         <text x={dimensions.chartWidth + 10} dy="5" y={i * 40} fontSize={12} fill="#7C868A">{`${4 - i}0分`}</text>
-      </>
+      </g>
     );
   }
 
@@ -76,7 +76,7 @@ const Graph01: React.FC = () => {
           <g transform="translate(0, 20)">
             {horizontalLines}
             {sessionData.map((data, i) => (
-              <>
+              <g key={data.sessionId}>
                 <BarGraph
                   withIcon
                   data={data}
@@ -92,7 +92,7 @@ const Graph01: React.FC = () => {
                   chartHeight={dimensions.chartHeight}
                   color={memberColor(data.memberId)}
                 />
-              </>
+              </g>
             ))}
             <LineGraph linePoints={linePoints} endPoint={endPoint} />
           </g>

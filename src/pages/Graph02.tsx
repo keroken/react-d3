@@ -4,11 +4,11 @@ import LineGraph from './LineGraph';
 import styled from 'styled-components';
 
 const sessionData = [
-  { sessionId: 1003, memberId: 1, name: '岩谷真里奈', iconName: '岩谷', date: '2021-03-30', memberSpeech: 5.0, mentorSpeech: 11.0, sessionDuration: 13.0 },
+  { sessionId: 1003, memberId: 2, name: '大月加奈', iconName: '大月', date: '2021-03-30', memberSpeech: 5.0, mentorSpeech: 11.0, sessionDuration: 13.0 },
   { sessionId: 1021, memberId: 2, name: '大月加奈', iconName: '大月', date: '2021-04-06', memberSpeech: 7.0, mentorSpeech: 15.0, sessionDuration: 22.0 },
-  { sessionId: 1034, memberId: 3, name: '下田裕美', iconName: '下田', date: '2021-04-13', memberSpeech: 12.0, mentorSpeech: 16.0, sessionDuration: 23.0 },
-  { sessionId: 1039, memberId: 1, name: '岩谷真里奈', iconName: '岩谷', date: '2021-04-20', memberSpeech: 18.0, mentorSpeech: 16.0, sessionDuration: 30.0 },
-  { sessionId: 1042, memberId: 3, name: '下田裕美', iconName: '下田', date: '2021-04-27', memberSpeech: 18.0, mentorSpeech: 11.0, sessionDuration: 24.0 },
+  { sessionId: 1034, memberId: 2, name: '大月加奈', iconName: '大月', date: '2021-04-13', memberSpeech: 12.0, mentorSpeech: 16.0, sessionDuration: 23.0 },
+  { sessionId: 1039, memberId: 2, name: '大月加奈', iconName: '大月', date: '2021-04-20', memberSpeech: 18.0, mentorSpeech: 16.0, sessionDuration: 30.0 },
+  { sessionId: 1042, memberId: 2, name: '大月加奈', iconName: '大月', date: '2021-04-27', memberSpeech: 18.0, mentorSpeech: 11.0, sessionDuration: 24.0 },
 ];
 
 const memberColors = ['#76D4F4', '#8AE58B', '#F9B12B'];
@@ -42,7 +42,7 @@ const ratio = (domain: number, range: number) => {
   return (range / domain);
 };
 
-const Bargraph01: React.FC = () => {
+const Graph02: React.FC = () => {
   const horizontalLines = [];
   for (let i = 0; i < 5; i++) {
     horizontalLines.push(
@@ -78,7 +78,7 @@ const Bargraph01: React.FC = () => {
             {sessionData.map((data, i) => (
               <BarGraph data={data} ratio={graphRatio} coordinate={barCoordinates[i]} color={memberColor(data.memberId)} chartHeight={dimensions.chartHeight} /> 
             ))}
-            <LineGraph linePoints={linePoints} endPoint={endPoint} />
+            <LineGraph linePoints={linePoints} endPoint={endPoint} color={memberColor(sessionData[0].memberId)} />
           </g>
         </svg>
       </StyledBase>
@@ -96,4 +96,4 @@ const StyledBase = styled.div`
   border: 1px solid #CACCCD;
 `
 
-export default Bargraph01;
+export default Graph02;

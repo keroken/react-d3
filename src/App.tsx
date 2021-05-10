@@ -1,13 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
-import Test01 from './pages/Test01'
-import Test02 from './pages/Test02'
-import Test03 from './pages/Test03'
-import Test04 from './pages/Test04'
-import Test05 from './pages/Test05'
-import RadarChart from './pages/RadarChart'
-import RadarChartFlex from './pages/RadarChartFlex'
-import Bargraph01 from './pages/BarGraph01'
+import Test01 from './pages/Test01';
+import Test02 from './pages/Test02';
+import Test03 from './pages/Test03';
+import Test04 from './pages/Test04';
+import Test05 from './pages/Test05';
+import RadarChart from './pages/RadarChart';
+import RadarChartFlex from './pages/RadarChartFlex';
+import Graph01 from './pages/Graph01';
+import Graph02 from './pages/Graph02';
 
 const App = () => {
   return (
@@ -40,7 +41,10 @@ const App = () => {
               <Link to="/radarchartflex">radarchartflex</Link>
             </li>
             <li>
-              <Link to="/bar-graph-01">bar-graph-01</Link>
+              <Link to="/graph-01">graph-01</Link>
+            </li>
+            <li>
+              <Link to="/graph-02">graph-02</Link>
             </li>
           </ul>
         </nav>
@@ -66,8 +70,11 @@ const App = () => {
           <Route path="/radarchartflex">
             <RadarChartFlex />
           </Route>
-          <Route path="/bar-graph-01">
-            <Bargraph01 />
+          <Route path="/graph-01">
+            <Graph01 />
+          </Route>
+          <Route path="/graph-02">
+            <Graph02 />
           </Route>
         </Switch>
       </div>

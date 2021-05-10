@@ -23,19 +23,22 @@ type BarGraphProps = {
   coordinate: coordinatesType;
   color: string;
   chartHeight: number;
+  withIcon?: boolean;
 };
 
-const BarGraph = ({data, ratio, coordinate, color, chartHeight}: BarGraphProps) => {
+const BarGraph = ({data, ratio, coordinate, color, chartHeight, withIcon}: BarGraphProps) => {
   return (
     <>
       <rect width={6} height={ratio * data.memberSpeech} x={coordinate.x} y={coordinate.y} rx={3} fill={color} />
       <rect width={6} height={ratio * data.mentorSpeech} x={coordinate.x + 10} y={160 - (ratio * data.mentorSpeech)} rx={3} fill ="#CACCCD" />
-      <g transform={`translate(${coordinate.x - 4}, ${chartHeight + 6})`}>
-        <circle cx={12} cy={12} r={12} fill={color} />
-        <text x={2} y={16} fontSize={10} fill="#FFFFFF">{data.iconName}</text>
-      </g>
-      <text textAnchor="end" x={coordinate.x} y={chartHeight + 30} dx={20} dy={20} fontSize={12} fill="#7C868A">{format(new Date(data.date), "d'日'")}</text>
-      <text textAnchor="end" x={coordinate.x} y={chartHeight + 30} dx={20} dy={40} fontSize={12} fill="#7C868A">{format(new Date(data.date), "M'月'")}</text>
+      {withIcon &&
+        <g transform={`translate(${coordinate.x - 4}, ${chartHeight + 6})`}>
+          <circle cx={12} cy={12} r={12} fill={color} />
+          <text x={2} y={16} fontSize={10} fill="#FFFFFF">{data.iconName}</text>
+        </g>
+      }
+      <text textAnchor="end" x={coordinate.x} y={withIcon ? chartHeight + 30 : chartHeight + 6} dx={20} dy={20} fontSize={12} fill="#7C868A">{format(new Date(data.date), "d'日'")}</text>
+      <text textAnchor="end" x={coordinate.x} y={withIcon ? chartHeight + 30 : chartHeight + 6} dx={20} dy={40} fontSize={12} fill="#7C868A">{format(new Date(data.date), "M'月'")}</text>
     </>
   );
 };

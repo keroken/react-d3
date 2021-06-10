@@ -1,6 +1,7 @@
 import { BarChart } from '../components/BarChart';
 import { HorizontalLabels } from '../components/HorizontalLabels';
 import { HorizontalLines } from '../components/HorizontalLines';
+import { LineChart } from '../components/LineChart';
 import { sessionDataType } from '../components/chartTypes';
 import { useRatio } from '../components/useRatio';
 import React from 'react';
@@ -12,6 +13,7 @@ const Graph04: React.FC = () => {
       <g transform="translate(50, 50)">
         <HorizontalLines chartWidth={dimensions.chartWidth} />
         <BarChart dimensions={dimensions} sessionData={sessionData} graphRatio={graphRatio} color="#8AE58B" />
+        <LineChart dimensions={dimensions} sessionData={sessionData} graphRatio={graphRatio} color="#8AE58B" />
         <HorizontalLabels sessionData={sessionData} dimensions={dimensions} withIcon color="#8AE58B" />
       </g>
     </svg>

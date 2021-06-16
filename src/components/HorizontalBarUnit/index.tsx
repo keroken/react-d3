@@ -1,4 +1,3 @@
-import { coordinatesType, dimensionsType, sessionDataType } from '../chartTypes';
 import React from 'react';
 
 type HorizontalBarChartProps = {

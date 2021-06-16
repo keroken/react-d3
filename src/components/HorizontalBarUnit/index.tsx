@@ -9,7 +9,7 @@ type HorizontalBarChartProps = {
 
 export const HorizontalBarUnit = ({ unitValue, graphRatio, color }: HorizontalBarChartProps) => {
   return (
-    <StyledSvg>
+    <StyledSvg graphRatio={graphRatio}>
       <rect
         height={12}
         width={graphRatio}
@@ -30,6 +30,7 @@ export const HorizontalBarUnit = ({ unitValue, graphRatio, color }: HorizontalBa
   );
 };
 
-const StyledSvg = styled.svg`
+const StyledSvg = styled.svg<Pick<HorizontalBarChartProps, 'graphRatio'>>`
+  width: ${props => props.graphRatio}px;
   height: 12px;
-`;
+`

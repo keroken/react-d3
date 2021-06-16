@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 
 type HorizontalBarChartProps = {
   unitValue: number;
@@ -8,7 +9,7 @@ type HorizontalBarChartProps = {
 
 export const HorizontalBarUnit = ({ unitValue, graphRatio, color }: HorizontalBarChartProps) => {
   return (
-    <svg>
+    <StyledSvg>
       <rect
         height={12}
         width={graphRatio}
@@ -25,6 +26,11 @@ export const HorizontalBarUnit = ({ unitValue, graphRatio, color }: HorizontalBa
         rx={2}
         fill={color}
       />
-    </svg>
+    </StyledSvg>
   );
 };
+
+const StyledSvg = styled.svg`
+  width: 100%;
+  height: 12px;
+`;

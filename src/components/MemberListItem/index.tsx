@@ -12,18 +12,20 @@ export const MemberListItem = () => {
   return (
     <StyledContainer>
       <StyledMemberIcon />
-      <svg transform="translate(50, 50)">
-        <HorizontalBarUnit unitValue={64} graphRatio={96} color="#17D4E5" />
-      </svg>
+      <StyledMemberName>笹野賢二</StyledMemberName>
+      <HorizontalBarUnit unitValue={64} graphRatio={96} color="#17D4E5" />
     </StyledContainer>
   );
 };
 
 const StyledContainer = styled.div`
+  position: relative;
   display: flex;
   align-items: center;
   width: 100%;
   height: 64px;
+  border-top: 1px solid lightGray;
+  border-bottom: 1px solid lightGray;
 `;
 
 const StyledMemberIcon = styled.span`
@@ -32,4 +34,11 @@ const StyledMemberIcon = styled.span`
   height: 32px;
   background: gray;
   border-radius: 999px;
+`;
+
+const StyledMemberName = styled.span`
+  display: flex;
+  align-items: center;
+  width: 120px;
+  margin-left: 12px;
 `;

@@ -31,6 +31,5 @@ export const HorizontalBarUnit = ({ unitValue, graphRatio, color }: HorizontalBa
 };
 
 const StyledSvg = styled.svg`
-  width: 100%;
   height: 12px;
 `;

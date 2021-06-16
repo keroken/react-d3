@@ -13,7 +13,8 @@ export const MemberListItem = () => {
     <StyledContainer>
       <StyledMemberIcon />
       <StyledMemberName>笹野賢二</StyledMemberName>
-      <HorizontalBarUnit unitValue={64} graphRatio={96} color="#17D4E5" />
+      <HorizontalBarUnit unitValue={64} graphRatio={96} color="#69AEF8" />
+      <HorizontalBarUnit unitValue={48} graphRatio={96} color="#17D4E5" />
     </StyledContainer>
   );
 };

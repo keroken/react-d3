@@ -1,6 +1,7 @@
 import { MemberListItem } from '.';
 import { makeMeta } from '../../helpers/Story';
 import React from 'react';
+import styled from 'styled-components';
 
 export default makeMeta({
   component: MemberListItem,
@@ -13,8 +14,12 @@ export default makeMeta({
 });
 export const Primary = () => {
   return (
-    <MemberListItem />
+    <StyledTable>
+      <MemberListItem />
+    </StyledTable>
   );
 };
 
-const data = 62;
+const StyledTable = styled.table`
+  width: 100%;
+`;

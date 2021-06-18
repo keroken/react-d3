@@ -2,24 +2,26 @@ import { HorizontalBarUnit } from '../HorizontalBarUnit';
 import React from 'react';
 import styled from 'styled-components';
 
-type MemberListItemProps = {
-  unitValue: number;
-  graphRatio: number;
-  color: string;
-};
-
 export const MemberListItem = () => {
   return (
-    <StyledContainer>
-      <StyledMemberIcon />
-      <StyledMemberName>笹野賢二</StyledMemberName>
-      <HorizontalBarUnit unitValue={64} graphRatio={96} color="#69AEF8" />
-      <HorizontalBarUnit unitValue={48} graphRatio={96} color="#17D4E5" />
-    </StyledContainer>
+    <StyledTableRow>
+      <StyledTableCell>
+        <StyledMemberIcon />
+      </StyledTableCell>
+      <StyledTableCell>
+        <StyledMemberName>笹野賢二</StyledMemberName>
+      </StyledTableCell>
+      <StyledTableCell>
+        <HorizontalBarUnit unitValue={64} graphRatio={96} color="#69AEF8" />
+      </StyledTableCell>
+      <StyledTableCell>
+        <HorizontalBarUnit unitValue={48} graphRatio={96} color="#17D4E5" />
+      </StyledTableCell>
+    </StyledTableRow>
   );
 };
 
-const StyledContainer = styled.div`
+const StyledTableRow = styled.tr`
   position: relative;
   display: flex;
   align-items: center;
@@ -27,6 +29,10 @@ const StyledContainer = styled.div`
   height: 64px;
   border-top: 1px solid lightGray;
   border-bottom: 1px solid lightGray;
+`;
+
+const StyledTableCell = styled.td`
+  padding: 16px 24px;
 `;
 
 const StyledMemberIcon = styled.span`
@@ -41,5 +47,4 @@ const StyledMemberName = styled.span`
   display: flex;
   align-items: center;
   width: 120px;
-  margin-left: 12px;
 `;

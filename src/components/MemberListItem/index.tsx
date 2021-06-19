@@ -40,7 +40,7 @@ const StyledTableRow = styled.tr`
 `;
 
 const StyledTableCell = styled.td`
-  padding: 16px 24px;
+  padding: 16px 12px;
 `;
 
 const StyledMemberIcon = styled.span<Pick<dataProps, 'imageUrl'>>`

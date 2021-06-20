@@ -2,7 +2,7 @@ import { HorizontalBarUnit } from '../HorizontalBarUnit';
 import React from 'react';
 import styled from 'styled-components';
 
-export type dataProps = {
+export type dataType = {
   id: number;
   name: string;
   imageUrl: string;
@@ -10,14 +10,18 @@ export type dataProps = {
   value_b: number;
 };
 
-export const MemberListItem = ({ id, name, imageUrl, value_a, value_b }: dataProps) => {
+type Props = {
+  data: dataType;
+}
+
+export const MemberListItem = (memberData: Props) => {
   return (
     <StyledTableRow>
       <StyledTableCell>
-        <StyledMemberIcon imageUrl={imageUrl} />
+        <StyledMemberIcon imageUrl={memberData.data.imageUrl} />
       </StyledTableCell>
       <StyledTableCell>
-        <StyledMemberName>{name}</StyledMemberName>
+        <StyledMemberName>{memberData.data.name}</StyledMemberName>
       </StyledTableCell>
       <StyledTableCell>
         <HorizontalBarUnit unitValue={64} graphRatio={96} color="#69AEF8" />
@@ -43,7 +47,7 @@ const StyledTableCell = styled.td`
   padding: 16px 12px;
 `;
 
-const StyledMemberIcon = styled.span<Pick<dataProps, 'imageUrl'>>`
+const StyledMemberIcon = styled.span<Pick<dataType, 'imageUrl'>>`
   display: flex;
   width: 32px;
   height: 32px;

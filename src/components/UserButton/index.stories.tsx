@@ -16,7 +16,7 @@ export const Basic = () => {
 };
 
 const data = {
-  name: '久保 浩子',
+  name: '松井 麻衣',
   imageUrl: 'images/interview-image02.png',
   isActive: true,
 };

@@ -16,5 +16,10 @@ export const Primary = () => {
     <HorizontalBarUnit unitValue={data} graphRatio={96} color="#17D4E5" />
   );
 };
+export const Secondary = () => {
+  return (
+    <HorizontalBarUnit unitValue={data} graphRatio={96} color="#69AEF8" />
+  );
+};
 
 const data = 62;

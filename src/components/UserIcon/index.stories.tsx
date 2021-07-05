@@ -1,5 +1,5 @@
 import { UserIcon } from '.';
-import { boolean, select } from '@storybook/addon-knobs';
+import { boolean, number, select } from '@storybook/addon-knobs';
 import { makeMeta } from '../../helpers/Story';
 import React from 'react';
 
@@ -18,5 +18,14 @@ export const Basic = () => (
     imageUrl="images/interview-image01.png"
     size={select('size', ['small', 'regular', 'large'], 'regular')}
     isActive={boolean('isActive', true)}
+  />
+);
+
+export const WithData = () => (
+  <UserIcon
+    imageUrl="images/interview-image01.png"
+    size={select('size', ['small', 'regular', 'large'], 'regular')}
+    showData
+    dataValue={number('data value', 75)}
   />
 );

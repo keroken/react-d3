@@ -34,7 +34,7 @@ export const GlobalHeader = ({ mode, notification, user }: Props) => {
       )}
       <StyledNavContainer>
         <StyledUserIcon onClick={() => alert('clicked')}>
-          <UserIcon imageUrl={user.imageUrl} isActive={false} size="small" />
+          <UserIcon name={user.name} bgColor="lightblue" imageUrl={user.imageUrl} isActive={false} size="small" />
         </StyledUserIcon>
       </StyledNavContainer>
     </StyledHeader>

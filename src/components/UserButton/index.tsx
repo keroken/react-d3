@@ -11,7 +11,7 @@ type Props = {
 export const UserButton = ({ name, imageUrl, isActive }: Props) => {
   return (
     <StyledButton>
-      <UserIcon imageUrl={imageUrl} size="small" isActive={isActive} />
+      <UserIcon name={name} bgColor="lightblue" imageUrl={imageUrl} size="small" isActive={isActive} />
       <StyledName>{name}</StyledName>
     </StyledButton>
   );

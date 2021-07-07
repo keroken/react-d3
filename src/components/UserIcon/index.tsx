@@ -20,7 +20,7 @@ export const UserIcon = ({ name, bgColor, imageUrl, size, isActive, showData, da
     const progressOffset = -(dataValue / 100) * circumference;
     setOffset(progressOffset);
   }, [setOffset, circumference, dataValue, offset]);
-  const initial = name.slice(0, 1);
+  const initial = name.slice(0, 2);
 
   return (
     <>

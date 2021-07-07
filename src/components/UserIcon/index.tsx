@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components';
 
 type Props = {
   name: string;
+  nameForIcon?: string;
   bgColor: string;
   imageUrl?: string;
   size: 'small' | 'regular' | 'large';
@@ -11,7 +12,7 @@ type Props = {
   dataValue?: number;
 };
 
-export const UserIcon = ({ name, bgColor, imageUrl, size, isActive, showData, dataValue = 0 }: Props) => {
+export const UserIcon = ({ name, nameForIcon, bgColor, imageUrl, size, isActive, showData, dataValue = 0 }: Props) => {
   const radius = size === 'large' ? 32 : size === 'regular' ? 16 : 12;
   const innerRadius = size === 'large' ? 30.5 : size === 'regular' ? 14.5 : 10.5;
   const circumference = 2 * Math.PI * innerRadius;
@@ -20,12 +21,17 @@ export const UserIcon = ({ name, bgColor, imageUrl, size, isActive, showData, da
     const progressOffset = -(dataValue / 100) * circumference;
     setOffset(progressOffset);
   }, [setOffset, circumference, dataValue, offset]);
-  const initial = name.slice(0, 2);
+  let nameOnIcon = '';
+  if (nameForIcon !== undefined) {
+    nameOnIcon = nameForIcon.slice(0, 3);
+  } else {
+    nameOnIcon = name.slice(0, 2);
+  }
 
   return (
     <>
       <StyledMemberIcon imageUrl={imageUrl} size={size} bgColor={bgColor}>
-        {imageUrl ? null : initial}
+        {imageUrl ? null : nameOnIcon}
         {isActive && <StyledBadge size={size} />}
         {showData && (
           <StyledSVG>
@@ -59,23 +65,25 @@ const StyledMemberIcon = styled.span<Pick<Props, 'imageUrl' | 'size' | 'bgColor'
         return css`
           width: 24px;
           height: 24px;
-          font-size: 14px;
+          font-size: 9px;
         `;
       case 'large':
         return css`
           width: 64px;
           height: 64px;
-          font-size: 24px;
+          font-size: 20px;
         `;
       default:
         return css`
           width: 32px;
           height: 32px;
-          font-size: 16px;
+          font-size: 11px;
         `;
     }
   }};
-  color: #202428;
+  text-align: center;
+  line-height: 12px;
+  color: #FFFFFF;
   background-color: ${props => props.bgColor};
   ${props =>
     props.imageUrl &&

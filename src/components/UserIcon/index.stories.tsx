@@ -1,5 +1,5 @@
 import { UserIcon } from '.';
-import { boolean, number } from '@storybook/addon-knobs';
+import { boolean, number, select } from '@storybook/addon-knobs';
 import { makeMeta } from '../../helpers/Story';
 import React from 'react';
 import styled from 'styled-components';
@@ -14,7 +14,50 @@ export default makeMeta({
   },
 });
 
-export const Basic = () => (
+const colorData = [
+  'Red',
+  'Pink',
+  'Purple',
+  'Turquoise',
+  'RoyalBlue',
+  'Blue',
+  'Aquamarine',
+  'YellowGreen',
+  'Yellow',
+  'Orange',
+];
+
+export const Basic = () => {
+  return (
+    <>
+      <StyledContainer>
+        {colorData.map(color => (
+          <UserIcon
+            key={color}
+            name="笹野 健二"
+            bgColor={color}
+            size={select('size', ['small', 'regular', 'large'], 'regular')}
+            isActive={boolean('isActive', true)}
+          />
+        ))}
+      </StyledContainer>
+      <StyledContainer>
+        {colorData.map(color => (
+          <UserIcon
+            key={color}
+            name="鴨志田 一也"
+            nameForIcon="鴨志田"
+            bgColor={color}
+            size={select('size', ['small', 'regular', 'large'], 'regular')}
+            isActive={boolean('isActive', true)}
+          />
+        ))}
+      </StyledContainer>
+    </>
+  );
+};
+
+export const WithImage = () => (
   <StyledContainer>
     <UserIcon
       name="笹野 健二"

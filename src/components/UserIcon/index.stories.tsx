@@ -91,7 +91,7 @@ export const WithData = () => (
       imageUrl="images/interview-image01.png"
       size="small"
       showData={boolean('show data', true)}
-      dataValue={number('data value', 75)}
+      dataValue={number('data value', 60)}
     />
     <UserIcon
       name="笹野 健二"
@@ -99,7 +99,7 @@ export const WithData = () => (
       imageUrl="images/interview-image01.png"
       size="regular"
       showData={boolean('show data', true)}
-      dataValue={number('data value', 75)}
+      dataValue={number('data value', 60)}
     />
     <UserIcon
       name="笹野 健二"
@@ -107,7 +107,7 @@ export const WithData = () => (
       imageUrl="images/interview-image01.png"
       size="large"
       showData={boolean('show data', true)}
-      dataValue={number('data value', 75)}
+      dataValue={number('data value', 60)}
     />
   </StyledContainer>
 );

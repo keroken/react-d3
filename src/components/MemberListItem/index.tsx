@@ -1,3 +1,5 @@
+
+import { TypographyTokens, space } from '@/styles';
 import { HorizontalBarUnit } from '../HorizontalBarUnit';
 import React from 'react';
 import styled from 'styled-components';
@@ -61,4 +63,6 @@ const StyledMemberName = styled.span`
   display: flex;
   align-items: center;
   width: 120px;
+  margin-left: ${space(3)};
+  ${TypographyTokens.Label3};
 `;

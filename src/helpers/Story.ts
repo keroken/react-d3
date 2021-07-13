@@ -1,6 +1,6 @@
-// import { ColorTokenType, ColorTokens, IconToken, IconTokens } from '@/styles';
+import { ColorTokenType, ColorTokens, IconToken, IconTokens } from '@/styles';
 import { FC, Component as ReactComponent } from 'react';
-// import { IconName, iconElements } from '@Icon';
+import { IconName, iconElements } from '@Icon';
 
 type ComponentStory = {
   package: 'core' | 'candidate' | 'company' | 'prism';
@@ -47,35 +47,35 @@ export function makeMeta({ component, meta, decorators, includeStories }: Props)
   };
 }
 
-// export function iconSelect(defaultIcon?: IconName) {
-//   return {
-//     label: 'icon',
-//     options: Object.keys(iconElements).reduce(
-//       (acc, iconName) => ({ ...acc, [iconName]: iconName }),
-//       {} as Record<IconName, IconName>,
-//     ),
-//     default: defaultIcon ?? ('archive' as IconName),
-//   };
-// }
+export function iconSelect(defaultIcon?: IconName) {
+  return {
+    label: 'icon',
+    options: Object.keys(iconElements).reduce(
+      (acc, iconName) => ({ ...acc, [iconName]: iconName }),
+      {} as Record<IconName, IconName>,
+    ),
+    default: defaultIcon ?? ('archive' as IconName),
+  };
+}
 
-// export function colorNameSelect(defaultColor?: ColorTokenType) {
-//   return {
-//     label: 'color',
-//     options: Object.keys(ColorTokens).reduce(
-//       (acc, colorName) => ({ ...acc, [colorName]: colorName }),
-//       {} as Record<ColorTokenType, ColorTokenType>,
-//     ),
-//     default: defaultColor ?? ('Icon02' as ColorTokenType),
-//   };
-// }
+export function colorNameSelect(defaultColor?: ColorTokenType) {
+  return {
+    label: 'color',
+    options: Object.keys(ColorTokens).reduce(
+      (acc, colorName) => ({ ...acc, [colorName]: colorName }),
+      {} as Record<ColorTokenType, ColorTokenType>,
+    ),
+    default: defaultColor ?? ('Icon02' as ColorTokenType),
+  };
+}
 
-// export function iconSizeSelect(defaultIconSize?: IconToken) {
-//   return {
-//     label: 'icon size',
-//     options: Object.keys(IconTokens).reduce(
-//       (acc, size) => ({ ...acc, [size]: size }),
-//       {} as Record<IconToken, IconToken>,
-//     ),
-//     default: defaultIconSize ?? ('Large' as IconToken),
-//   };
-// }
+export function iconSizeSelect(defaultIconSize?: IconToken) {
+  return {
+    label: 'icon size',
+    options: Object.keys(IconTokens).reduce(
+      (acc, size) => ({ ...acc, [size]: size }),
+      {} as Record<IconToken, IconToken>,
+    ),
+    default: defaultIconSize ?? ('Large' as IconToken),
+  };
+}

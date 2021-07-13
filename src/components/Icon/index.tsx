@@ -1,4 +1,4 @@
-import { Badge } from '@/components/dataDisplay/Badge';
+import { Badge } from '@/components/Badge';
 import {
   BorderRadius,
   ColorPalette,

@@ -13,6 +13,7 @@ module.exports = {
   webpackFinal: async config => {
     config.resolve.extensions.push('.ts', '.tsx');
     config.resolve.alias['@'] = path.resolve(__dirname, '../src');
+    config.resolve.alias['@Icon'] = path.resolve(__dirname, '../src/icon');
     config.resolve.alias['helpers'] = path.resolve(__dirname, '../src/helpers');
     return config;
   },

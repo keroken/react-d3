@@ -8,7 +8,7 @@ export default makeMeta({
   meta: {
     package: 'core',
     type: 'components',
-    category: 'dataDisplay',
+    category: 'layout',
     name: 'MemberListItem',
   },
 });

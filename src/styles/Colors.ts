@@ -4,33 +4,34 @@ export const ColorPalette = {
   White: '#FFFFFF',
   Black: '#000000',
 
-  Gray10: '#F3F4F5',
-  Gray20: '#E9EAEB',
-  Gray30: '#DEDFE0',
-  Gray40: '#CACCCD',
-  Gray50: '#A4A5A6',
-  Gray60: '#838789',
-  Gray70: '#7C868A',
-  Gray80: '#5C6366',
-  Gray90: '#454A4D',
-  Gray100: '#2F3233',
-  // aaa: '#e1e5e9'
+  Gray10: '#F3F5F7',
+  Gray20: '#EEF2F4',
+  Gray30: '#D7DCE0',
+  Gray40: '#BFC3C8',
+  Gray50: '#A5ADB6',
+  Gray60: '#9FA7AF',
+  Gray70: '#8D939A',
+  Gray80: '#676C72',
+  Gray90: '#46494E',
+  Gray100: '#202428',
 
-  Blue10: '#F7FBFF',
-  Blue20: '#E5F2FF',
-  Blue30: '#B9D8F7',
-  Blue40: '#A2CBF5',
-  Blue50: '#177EE5',
-  Blue60: '#297BCC',
-  Blue70: '#246BB2',
-  Blue80: '#1F5C99',
-  Blue90: '#1C548C',
-  Blue100: '#1A4D80',
+  Blue10: '#DEEEFF',
+  Blue20: '#CBE3FF',
+  Blue30: '#9DC8F8',
+  Blue40: '#69AEF8',
+  Blue50: '#288CFA',
+  Blue60: '#1876DD',
+  Blue70: '#0D62BE',
+  Blue80: '#064C99',
+  Blue90: '#053E7C',
+  Blue100: '#032B58',
 
   Red20: '#FFE5EC',
   Red40: '#F593AB',
-  Red50: '#D92B57',
+  Red50: '#EC6664',
   Red70: '#B22447',
+
+  Orange50: '#ECA564',
 
   Yellow50: '#FFD91A',
 
@@ -38,7 +39,7 @@ export const ColorPalette = {
 
   Purple50: '#7379FF',
 
-  Green50: '#56D99A',
+  Green50: '#84CC35',
 } as const;
 
 export const Tokens = {
@@ -70,7 +71,7 @@ export const Tokens = {
 
   Text01: ColorPalette.Gray100,
   Text01Dark: ColorPalette.White,
-  Text02: ColorPalette.Gray60,
+  Text02: ColorPalette.Gray50,
   Text02Dark: ColorPalette.Gray40,
   Text03: ColorPalette.Gray70,
   Text03Dark: ColorPalette.Gray50,
@@ -139,22 +140,27 @@ export const Tokens = {
   Disabled03: ColorPalette.Gray90,
   Disabled04: ColorPalette.Blue100,
 
-  UserColor01: '#F9DEAA',
-  UserColor02: '#FAF082',
-  UserColor03: '#A6E4A7',
-  UserColor04: '#9CDCF2',
-  UserColor05: '#ADC4F2',
-  UserColor06: '#D3B6E1',
-  UserColor07: '#EAACDD',
-  UserColor08: '#76D4F4',
-
   AdminRow01: '#FCFCFC',
   AdminRow02: '#E2E6EA',
+} as const;
+
+export const UserColorTokens = {
+  Red: '#F88282',
+  Pink: '#F191DD',
+  Purple: '#C88AE5',
+  Turquoise: '#86CEE5',
+  RoyalBlue: '#93B3F2',
+  Blue: '#7ECAF5',
+  Aquamarine: '#79EBDA',
+  YellowGreen: '#8AE58B',
+  Yellow: '#F3C90A',
+  Orange: '#F9B12C',
 } as const;
 
 export type ColorType = ValueOf<typeof ColorPalette>;
 export type ColorNameType = keyof typeof ColorPalette;
 export type ColorTokenType = keyof typeof Tokens;
+export type UserColorType = keyof typeof UserColorTokens;
 
 export const BackgroundKey: { [key: number]: { code: CSSProperties['backgroundColor']; name: string } } = {
   0: {

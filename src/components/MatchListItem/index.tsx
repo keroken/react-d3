@@ -113,7 +113,7 @@ const StyledSessionCount = styled.div`
 const StyledLastSessionDate = styled.div`
   display: flex;
   align-items: center;
-  width: 60px;
+  width: 80px;
   margin-right: ${space(16)};
   ${TypographyTokens.Label4};
   color: ${ColorTokens.Text02};

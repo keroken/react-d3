@@ -1,10 +1,11 @@
+import { BorderRadius, ColorTokens, UserColorTokens, UserColorType, square } from '@/styles';
 import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
 
 type Props = {
   name: string;
   nameForIcon?: string;
-  bgColor: string;
+  bgColor: UserColorType;
   imageUrl?: string;
   size: 'small' | 'regular' | 'large';
   isActive?: boolean;
@@ -63,28 +64,25 @@ const StyledMemberIcon = styled.span<Pick<Props, 'imageUrl' | 'size' | 'bgColor'
     switch (size) {
       case 'small':
         return css`
-          width: 24px;
-          height: 24px;
+          ${square(24)}
           font-size: 9px;
         `;
       case 'large':
         return css`
-          width: 64px;
-          height: 64px;
+          ${square(64)}
           font-size: 20px;
         `;
       default:
         return css`
-          width: 32px;
-          height: 32px;
+          ${square(32)}
           font-size: 11px;
         `;
     }
   }};
   text-align: center;
   line-height: 12px;
-  color: #FFFFFF;
-  background-color: ${props => props.bgColor};
+  color: ${ColorTokens.Text05};
+  background-color: ${({ bgColor }) => UserColorTokens[bgColor]};
   ${props =>
     props.imageUrl &&
     css`
@@ -92,7 +90,7 @@ const StyledMemberIcon = styled.span<Pick<Props, 'imageUrl' | 'size' | 'bgColor'
       background-position: center;
       background-size: cover;
     `}
-  border-radius: 999px;
+  border-radius: ${BorderRadius.Circle};
 `;
 
 const StyledBadge = styled.span<Pick<Props, 'size'>>`
@@ -103,19 +101,17 @@ const StyledBadge = styled.span<Pick<Props, 'size'>>`
     switch (size) {
       case 'large':
         return css`
-          width: 16px;
-          height: 16px;
+          ${square(16)}
         `;
       default:
         return css`
-          width: 10px;
-          height: 10px;
+          ${square(10)}
         `;
     }
   }};
-  border-radius: 999px;
-  border: 1px solid white;
-  background-color: #17D4E5;
+  border-radius: ${BorderRadius.Circle};
+  border: 1px solid ${ColorTokens.Icon03};
+  background-color: ${ColorTokens.Interactive04};
 `;
 
 const StyledSVG = styled.svg`

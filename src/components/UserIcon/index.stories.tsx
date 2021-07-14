@@ -1,3 +1,4 @@
+import { UserColorType } from '@/styles';
 import { UserIcon } from '.';
 import { boolean, number, select } from '@storybook/addon-knobs';
 import { makeMeta } from '../../helpers/Story';
@@ -14,7 +15,7 @@ export default makeMeta({
   },
 });
 
-const colorData = [
+const colorData: UserColorType[] = [
   'Red',
   'Pink',
   'Purple',
@@ -31,7 +32,7 @@ export const Basic = () => {
   return (
     <>
       <StyledContainer>
-        {colorData.map(color => (
+        {colorData.map((color: UserColorType) => (
           <UserIcon
             key={color}
             name="笹野 健二"

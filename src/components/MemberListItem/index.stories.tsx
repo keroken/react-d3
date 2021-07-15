@@ -16,7 +16,9 @@ export default makeMeta({
 export const Primary = () => {
   return (
     <StyledTable>
-      <MemberListItem data={memberData} />
+      <tbody>
+        <MemberListItem data={memberData} />
+      </tbody>
     </StyledTable>
   );
 };

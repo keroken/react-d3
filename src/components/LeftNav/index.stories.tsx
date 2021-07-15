@@ -1,5 +1,6 @@
-import { LeftNav, userDataType } from '.';
+import { LeftNav } from '.';
 import { makeMeta } from '../../helpers/Story';
+import { userDataType } from '@/components/userDataType';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -14,19 +15,20 @@ export default makeMeta({
 });
 export const Basic = () => {
   return (
-    <StyledTable>
+    <StyledContainer>
       <LeftNav userData={userData} memberData={memberData} memberDataOther={memberDataOther} />
-    </StyledTable>
+    </StyledContainer>
   );
 };
 
-const StyledTable = styled.table`
+const StyledContainer = styled.div`
   width: 100%;
 `;
 
 const userData: userDataType = {
   id: 1,
   name: '久保 浩子',
+  userColor: 'Blue',
   role: 'マネージャー',
   team: 'カスタマーサクセス',
   sessionCount: 10,
@@ -41,6 +43,7 @@ const memberData: userDataType[] = [
   {
     id: 1,
     name: '笹野 健二',
+    userColor: 'Aquamarine',
     role: 'メンバー',
     team: 'カスタマーサクセス',
     sessionCount: 10,
@@ -53,6 +56,7 @@ const memberData: userDataType[] = [
   {
     id: 2,
     name: '松井 麻衣',
+    userColor: 'Orange',
     role: 'メンバー',
     team: 'カスタマーサクセス',
     sessionCount: 10,
@@ -65,6 +69,7 @@ const memberData: userDataType[] = [
   {
     id: 3,
     name: '原田 智則',
+    userColor: 'Red',
     role: 'メンバー',
     team: 'カスタマーサクセス',
     sessionCount: 10,
@@ -77,6 +82,7 @@ const memberData: userDataType[] = [
   {
     id: 4,
     name: '渋谷 圭佑',
+    userColor: 'RoyalBlue',
     role: 'メンバー',
     team: 'カスタマーサクセス',
     sessionCount: 10,
@@ -92,6 +98,7 @@ const memberDataOther: userDataType[] = [
   {
     id: 1,
     name: '長田 陽介',
+    userColor: 'Purple',
     role: 'メンバー',
     team: 'カスタマーサクセス',
     sessionCount: 10,
@@ -104,6 +111,7 @@ const memberDataOther: userDataType[] = [
   {
     id: 2,
     name: '坂上 雅子',
+    userColor: 'Orange',
     role: 'メンバー',
     team: 'カスタマーサクセス',
     sessionCount: 10,

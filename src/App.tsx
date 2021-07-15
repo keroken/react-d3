@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
+import { ResetCss } from '@/styles';
 import Test01 from './pages/Test01';
 import Test02 from './pages/Test02';
 import Test03 from './pages/Test03';
@@ -14,85 +15,88 @@ import Graph04 from './pages/Graph04';
 
 const App = () => {
   return (
-    <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/test01">Test01</Link>
-            </li>
-            <li>
-              <Link to="/test02">Test02</Link>
-            </li>
-            <li>
-              <Link to="/test03">Test03</Link>
-            </li>
-            <li>
-              <Link to="/test04">Test04</Link>
-            </li>
-            <li>
-              <Link to="/test05">Test05</Link>
-            </li>
-            <li>
-              <Link to="/radarchart">radarchart</Link>
-            </li>
-            <li>
-              <Link to="/radarchartflex">radarchartflex</Link>
-            </li>
-            <li>
-              <Link to="/graph-01">graph-01</Link>
-            </li>
-            <li>
-              <Link to="/graph-02">graph-02</Link>
-            </li>
-            <li>
-              <Link to="/graph-03">graph-03</Link>
-            </li>
-            <li>
-              <Link to="/graph-04">graph-04</Link>
-            </li>
-          </ul>
-        </nav>
-        <Switch>
-          <Route path="/test01">
-            <Test01 />
-          </Route>
-          <Route path="/test02">
-            <Test02 />
-          </Route>
-          <Route path="/test03">
-            <Test03 />
-          </Route>
-          <Route path="/test04">
-            <Test04 />
-          </Route>
-          <Route path="/test05">
-            <Test05 />
-          </Route>
-          <Route path="/radarchart">
-            <RadarChart />
-          </Route>
-          <Route path="/radarchartflex">
-            <RadarChartFlex />
-          </Route>
-          <Route path="/graph-01">
-            <Graph01 />
-          </Route>
-          <Route path="/graph-02">
-            <Graph02 />
-          </Route>
-          <Route path="/graph-03">
-            <Graph03 />
-          </Route>
-          <Route path="/graph-04">
-            <Graph04 />
-          </Route>
-        </Switch>
-      </div>
-    </Router>
+    <>
+      <Router>
+        <div>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+              <li>
+                <Link to="/test01">Test01</Link>
+              </li>
+              <li>
+                <Link to="/test02">Test02</Link>
+              </li>
+              <li>
+                <Link to="/test03">Test03</Link>
+              </li>
+              <li>
+                <Link to="/test04">Test04</Link>
+              </li>
+              <li>
+                <Link to="/test05">Test05</Link>
+              </li>
+              <li>
+                <Link to="/radarchart">radarchart</Link>
+              </li>
+              <li>
+                <Link to="/radarchartflex">radarchartflex</Link>
+              </li>
+              <li>
+                <Link to="/graph-01">graph-01</Link>
+              </li>
+              <li>
+                <Link to="/graph-02">graph-02</Link>
+              </li>
+              <li>
+                <Link to="/graph-03">graph-03</Link>
+              </li>
+              <li>
+                <Link to="/graph-04">graph-04</Link>
+              </li>
+            </ul>
+          </nav>
+          <Switch>
+            <Route path="/test01">
+              <Test01 />
+            </Route>
+            <Route path="/test02">
+              <Test02 />
+            </Route>
+            <Route path="/test03">
+              <Test03 />
+            </Route>
+            <Route path="/test04">
+              <Test04 />
+            </Route>
+            <Route path="/test05">
+              <Test05 />
+            </Route>
+            <Route path="/radarchart">
+              <RadarChart />
+            </Route>
+            <Route path="/radarchartflex">
+              <RadarChartFlex />
+            </Route>
+            <Route path="/graph-01">
+              <Graph01 />
+            </Route>
+            <Route path="/graph-02">
+              <Graph02 />
+            </Route>
+            <Route path="/graph-03">
+              <Graph03 />
+            </Route>
+            <Route path="/graph-04">
+              <Graph04 />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
+      <ResetCss />
+    </>
   )
 }
 

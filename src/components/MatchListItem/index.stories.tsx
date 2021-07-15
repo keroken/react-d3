@@ -16,7 +16,9 @@ export default makeMeta({
 export const Basic = () => {
   return (
     <StyledTable>
-      <MatchListItem userData={userData} memberData={memberData} />
+      <tbody>
+        <MatchListItem userData={userData} memberData={memberData} />
+      </tbody>
     </StyledTable>
   );
 };

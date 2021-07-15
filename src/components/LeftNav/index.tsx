@@ -1,19 +1,9 @@
-import { UserButton } from '../UserButton';
+import { Button } from '@/components/Button';
+import { ColorTokens, TypographyTokens, space } from '@/styles';
+import { UserButton } from '@/components/UserButton';
+import { userDataType } from '@/components/userDataType';
 import React from 'react';
 import styled from 'styled-components';
-
-export type userDataType = {
-  id: number;
-  name: string;
-  role: string;
-  team: string;
-  sessionCount: number;
-  lastSessionDate: string;
-  imageUrl: string;
-  value_a: number;
-  value_b: number;
-  isActive: boolean;
-};
 
 type Props = {
   userData: userDataType;
@@ -26,13 +16,44 @@ export const LeftNav = (data: Props) => {
   return (
     <StyledNavContainer>
       <StyledNavHeader>
-        <UserButton name={userData.name} imageUrl={userData.imageUrl} isActive={userData.isActive} />
+        <UserButton
+          id={userData.id}
+          name={userData.name}
+          nameForIcon={userData.nameForIcon}
+          userColor={userData.userColor}
+          role={userData.role}
+          team={userData.team}
+          sessionCount={userData.sessionCount}
+          lastSessionDate={userData.lastSessionDate}
+          imageUrl={userData.imageUrl}
+          value_a={userData.value_a}
+          value_b={userData.value_b}
+          isActive={userData.isActive}
+        />
       </StyledNavHeader>
+      <StyledButtonContainer>
+        <Button styling="outline" icon="plus" widthStyle="fit">
+          メンバーを追加
+        </Button>
+      </StyledButtonContainer>
       <StyledNavListTitle>あなたのチーム</StyledNavListTitle>
       <StyledNavList>
         {memberData.map(item => (
           <StyledListItem key={item.id}>
-            <UserButton name={item.name} imageUrl={item.imageUrl} isActive={item.isActive} />
+            <UserButton
+              id={item.id}
+              name={item.name}
+              nameForIcon={item.nameForIcon}
+              userColor={item.userColor}
+              role={item.role}
+              team={item.team}
+              sessionCount={item.sessionCount}
+              lastSessionDate={item.lastSessionDate}
+              imageUrl={item.imageUrl}
+              value_a={item.value_a}
+              value_b={item.value_b}
+              isActive={item.isActive}
+            />
           </StyledListItem>
         ))}
       </StyledNavList>
@@ -40,7 +61,20 @@ export const LeftNav = (data: Props) => {
       <StyledNavList>
         {memberDataOther.map(item => (
           <StyledListItem key={item.id}>
-            <UserButton name={item.name} imageUrl={item.imageUrl} isActive={item.isActive} />
+            <UserButton
+              id={item.id}
+              name={item.name}
+              nameForIcon={item.nameForIcon}
+              userColor={item.userColor}
+              role={item.role}
+              team={item.team}
+              sessionCount={item.sessionCount}
+              lastSessionDate={item.lastSessionDate}
+              imageUrl={item.imageUrl}
+              value_a={item.value_a}
+              value_b={item.value_b}
+              isActive={item.isActive}
+            />
           </StyledListItem>
         ))}
       </StyledNavList>
@@ -54,29 +88,30 @@ const StyledNavContainer = styled.div`
   flex-direction: column;
   width: 264px;
   height: 100vh;
-  background-color: #F3F4F5;
+  background-color: ${ColorTokens.UiBackground02};
 `;
 
 const StyledNavHeader = styled.div`
-  padding: 80px 16px 24px;
-  border-bottom: 1px solid #DEDFE0;
+  padding: ${space(10)} ${space(4)} ${space(6)};
+  border-bottom: 1px solid ${ColorTokens.Ui01};
+`;
+
+const StyledButtonContainer = styled.div`
+  padding: ${space(6)} ${space(4)};
 `;
 
 const StyledNavListTitle = styled.div`
   height: 32px;
-  padding: 12px 24px;
-  font-size: 11px;
-  font-weight: normal;
-  line-height: 11px;
-  color: #838789;
+  padding: ${space(3)} ${space(6)};
+  ${TypographyTokens.Label5};
+  color: ${ColorTokens.Text02};
 `;
 
 const StyledNavList = styled.ul`
   margin: 0;
-  padding: 16px;
-  list-style: none;
+  padding: ${space(4)};
 `;
 
 const StyledListItem = styled.li`
-  margin-bottom: 16px;
+  margin-bottom: ${space(4)};
 `;

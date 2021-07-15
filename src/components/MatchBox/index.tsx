@@ -88,7 +88,7 @@ const StyledCircle = styled.svg<{ color: UserColorType }>`
   margin-right: ${space(1)};
 `;
 
-const StyledUserCell = styled.td`
+const StyledUserCell = styled.div`
   display: flex;
   align-items: flex-start;
   min-width: 168px;

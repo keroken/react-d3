@@ -43,7 +43,7 @@ export const ManagerListItem = ({ userData, memberData }: Props) => {
               dataValue={member.value_a}
             />
           ) : index === 4 ? (
-            <StyledMoreIcon name="more" size="Large" />
+            <StyledMoreIcon key={member.id} name="more" size="Large" />
           ) : null,
         )}
       </StyledIconGroupCell>
@@ -128,7 +128,7 @@ const StyledLastSessionDate = styled.div`
   text-align: right;
 `;
 
-const StyledIconButtonContainer = styled.div`
+const StyledIconButtonContainer = styled.td`
   display: flex;
   align-items: center;
   justify-content: flex-end;

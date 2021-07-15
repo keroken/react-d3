@@ -1,3 +1,5 @@
+import { ResetCss } from '@/styles';
+import { addDecorator } from '@storybook/react';
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -8,3 +10,12 @@ export const parameters = {
     },
   },
 }
+
+const GlobalWrapper = storyFn => (
+  <>
+    <ResetCss />
+    {storyFn()}
+  </>
+);
+
+addDecorator(GlobalWrapper);

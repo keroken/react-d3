@@ -1,16 +1,32 @@
-import { RebiiLogo } from '../Rebii_logo';
-import { UserIcon } from '../UserIcon';
-import { userDataType } from '../LeftNav';
-import React from 'react';
+import { BorderRadius, ColorTokens, StyleShadow, TypographyTokens, space } from '@/styles';
+import { LiveIconButton } from '@/components/LiveIconButton';
+import { RebiiLogo } from '@/components/Rebii_logo';
+import { UserIcon } from '@/components//UserIcon';
+import { useOutsideClick } from '@/hooks/useOutsideClick';
+import { userDataType } from '@/components/userDataType';
+import React, { useRef, useState } from 'react';
 import styled, { css } from 'styled-components';
 
 type Props = {
-  mode: 'admin' | 'manager' | '1on1';
+  mode: 'admin' | 'manager' | 'member';
   notification: number;
   user: userDataType;
 };
 
 export const GlobalHeader = ({ mode, notification, user }: Props) => {
+  const [isUserMenuVisible, setIsUserMenuVisible] = useState(false);
+  const handleClickUserIcon = () => {
+    setIsUserMenuVisible(prev => !prev);
+  };
+  const handleClickLogout = () => {
+    setIsUserMenuVisible(false);
+  };
+  const handleOutsideClick = () => {
+    setIsUserMenuVisible(false);
+  };
+  const listRef = useRef<HTMLUListElement>(null);
+  useOutsideClick(listRef, handleOutsideClick, true);
+
   return (
     <StyledHeader>
       <StyledLogoContainer>
@@ -21,7 +37,6 @@ export const GlobalHeader = ({ mode, notification, user }: Props) => {
       {mode === 'admin' ? (
         <>
           <StyledButton>管理者</StyledButton>
-          <StyledButton style={{ width: '160px' }}>マネージメント</StyledButton>
           <StyledButton>1on1</StyledButton>
         </>
       ) : mode === 'manager' ? (
@@ -29,13 +44,28 @@ export const GlobalHeader = ({ mode, notification, user }: Props) => {
           <StyledButton>マネージメント</StyledButton>
           <StyledButton>1on1</StyledButton>
         </>
-      ) : (
-        <StyledButton>1on1</StyledButton>
-      )}
+      ) : null}
       <StyledNavContainer>
-        <StyledUserIcon onClick={() => alert('clicked')}>
-          <UserIcon name={user.name} bgColor="lightblue" imageUrl={user.imageUrl} isActive={false} size="small" />
+        <StyledIcon>
+          <LiveIconButton
+            icon="notification"
+            size="regular"
+            styling="light"
+            id="notification"
+            notification={notification}
+          />
+        </StyledIcon>
+        <StyledIcon>
+          <LiveIconButton icon="help" size="regular" styling="light" id="help" />
+        </StyledIcon>
+        <StyledUserIcon onClick={handleClickUserIcon}>
+          <UserIcon name={user.name} bgColor={user.userColor} imageUrl={user.imageUrl} isActive={false} size="small" />
         </StyledUserIcon>
+        {isUserMenuVisible && (
+          <StyledUserMenu ref={listRef}>
+            <StyledMenuItem onClick={handleClickLogout}>ログアウト</StyledMenuItem>
+          </StyledUserMenu>
+        )}
       </StyledNavContainer>
     </StyledHeader>
   );
@@ -48,18 +78,16 @@ const StyledHeader = styled.header`
   align-items: center;
   width: 100%;
   height: 64px;
-  padding: 0 32px;
-  background-color: #FFFFFF;
-  border-bottom: 1px solid #DEDFE0;
+  padding: 0 ${space(8)};
+  background-color: ${ColorTokens.UiBackground01};
+  border-bottom: 1px solid ${ColorTokens.Ui01};
 `;
 
 const StyledTitleLabel = styled.span`
-  margin-right: 96px;
-  font-size: 18px;
-  font-weight: normal;
-  line-height: 24px;
+  margin-right: ${space(24)};
+  ${TypographyTokens.Heading1}
   line-height: 1;
-  color: #2F3233;
+  color: ${ColorTokens.Text01};
 `;
 
 const StyledLogoContainer = styled.nav`
@@ -74,22 +102,21 @@ const StyledButton = styled.button`
   justify-content: center;
   width: 120px;
   height: 32px;
-  padding: 16px;
-  font-size: 12px;
-  font-weight: normal;
-  line-height: 12px;
-  color: #2F3233;
-  background-color: #FFFFFF;
+  padding: ${space(4)};
+  margin-right: ${space(6)};
+  ${TypographyTokens.Label4};
+  color: ${ColorTokens.Text03};
+  background-color: ${ColorTokens.UiBackground01};
   border: none;
-  border-radius: 4px;
+  border-radius: ${BorderRadius.Default};
   cursor: pointer;
   &:hover {
-    background-color: #E9EAEB;
+    background-color: ${ColorTokens.HoverUi};
   }
   &:active,
   &:focus {
-    color: #CACCCD;
-    background-color: #E9EAEB;
+    color: ${ColorTokens.Text04};
+    background-color: ${ColorTokens.HoverUi};
   }
 `;
 
@@ -100,15 +127,56 @@ const StyledNavContainer = styled.nav`
   margin-left: auto;
 `;
 
+const StyledIcon = styled.span`
+  margin-right: ${space(4)};
+`;
+
 const StyledUserIcon = styled.span<{ onClick: () => void }>`
-  padding: 4px;
-  border-radius: 4px;
+  padding: ${space(1)};
+  border-radius: ${BorderRadius.Default};
   ${props =>
     props.onClick !== undefined &&
     css`
       cursor: pointer;
       &:hover {
-        background-color: #E9EAEB;
+        background-color: ${ColorTokens.HoverUi};
       }
     `}
+`;
+
+const StyledUserMenu = styled.ul`
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 52px;
+  right: ${space(1)};
+  height: 32px;
+  margin: 0;
+  padding: 0;
+  background-color: ${ColorTokens.UiBackground01};
+  border: 1px solid ${ColorTokens.Ui01};
+  border-radius: ${BorderRadius.Default};
+  box-shadow: ${StyleShadow.DropShadow10};
+`;
+
+const StyledMenuItem = styled.li`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: 32px;
+  padding: 0 ${space(4)};
+  ${TypographyTokens.Label4};
+  color: ${ColorTokens.Text03};
+  list-style-type: none;
+  cursor: pointer;
+  border-bottom: 1px solid ${ColorTokens.Ui01};
+  &:last-of-type {
+    border-bottom: none;
+  }
+  &:hover {
+    background-color: ${ColorTokens.HoverUi};
+  }
 `;

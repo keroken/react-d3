@@ -1,6 +1,7 @@
 import { GlobalHeader } from '.';
-import { makeMeta } from '../../helpers/Story';
-import { userDataType } from '../LeftNav';
+import { makeMeta } from '@/helpers/Story';
+import { select } from '@storybook/addon-knobs';
+import { userDataType } from '@/components/userDataType';
 import React from 'react';
 
 export default makeMeta({
@@ -13,12 +14,15 @@ export default makeMeta({
   },
 });
 export const Basic = () => {
-  return <GlobalHeader mode="admin" user={userData} notification={3} />;
+  return (
+    <GlobalHeader mode={select('mode', ['admin', 'manager', 'member'], 'admin')} user={userData} notification={3} />
+  );
 };
 
 const userData: userDataType = {
   id: 1,
   name: '久保 浩子',
+  userColor: 'Blue',
   role: 'マネージャー',
   team: 'カスタマーサクセス',
   sessionCount: 10,
